@@ -1,0 +1,237 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "javascript": {
+    "globals": [
+      "describe",
+      "it",
+      "test",
+      "expect",
+      "beforeEach",
+      "afterEach",
+      "beforeAll",
+      "afterAll",
+      "jest",
+      "vi",
+      "vitest",
+      "cy",
+      "Cypress",
+      "chai",
+      "should",
+      "assert",
+      "sinon",
+      "browser",
+      "fixture",
+      "context"
+    ]
+  },
+  "linter": {
+    "rules": {
+      "complexity": {
+        "noExcessiveCognitiveComplexity": {
+          "level": "warn",
+          "options": {
+            "maxAllowedComplexity": 20
+          }
+        },
+        "noForEach": "off"
+      },
+      "correctness": {
+        "noUnusedVariables": {
+          "level": "warn"
+        },
+        "noUnusedImports": "warn",
+        "useHookAtTopLevel": "off"
+      },
+      "style": {
+        "noParameterAssign": "off",
+        "useConst": "warn",
+        "useNamingConvention": {
+          "level": "warn",
+          "options": {
+            "strictCase": false,
+            "requireAscii": false,
+            "conventions": [
+              {
+                "selector": {
+                  "kind": "variable"
+                },
+                "formats": [
+                  "camelCase",
+                  "PascalCase",
+                  "CONSTANT_CASE",
+                  "snake_case"
+                ]
+              },
+              {
+                "selector": {
+                  "kind": "function"
+                },
+                "formats": ["camelCase", "PascalCase", "snake_case"]
+              }
+            ]
+          }
+        }
+      },
+      "suspicious": {
+        "noConsole": "off",
+        "noDebugger": "warn",
+        "noExportsInTest": "error",
+        "noFocusedTests": "error",
+        "noSkippedTests": "warn",
+        "noDuplicateTestHooks": "error",
+        "noExplicitAny": "off",
+        "noImplicitAnyLet": "off"
+      },
+      "performance": {
+        "noAccumulatingSpread": "off",
+        "noDelete": "warn"
+      },
+      "nursery": {
+        "noFloatingPromises": "warn",
+        "noMisusedPromises": "warn",
+        "noSecrets": "off"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "includes": [
+        "*.test.js",
+        "*.test.jsx",
+        "*.test.ts",
+        "*.test.tsx",
+        "*.spec.js",
+        "*.spec.jsx",
+        "*.spec.ts",
+        "*.spec.tsx",
+        "*.test.mjs",
+        "*.test.cjs",
+        "*.spec.mjs",
+        "*.spec.cjs",
+        "**/__tests__/**/*",
+        "**/__test__/**/*",
+        "**/test/**/*",
+        "**/tests/**/*",
+        "**/spec/**/*",
+        "**/specs/**/*"
+      ],
+      "linter": {
+        "rules": {
+          "complexity": {
+            "noExcessiveCognitiveComplexity": "off"
+          },
+          "correctness": {
+            "noUnusedVariables": "off"
+          },
+          "suspicious": {
+            "noExportsInTest": "error",
+            "noFocusedTests": "error",
+            "noSkippedTests": "warn"
+          }
+        }
+      }
+    },
+    {
+      "includes": [
+        "*.e2e.js",
+        "*.e2e.ts",
+        "*.e2e.jsx",
+        "*.e2e.tsx",
+        "*.integration.js",
+        "*.integration.ts",
+        "**/e2e/**/*",
+        "**/integration/**/*",
+        "**/cypress/**/*",
+        "**/playwright/**/*"
+      ],
+      "linter": {
+        "rules": {
+          "performance": {
+            "noAccumulatingSpread": "off",
+            "noDelete": "off"
+          },
+          "suspicious": {
+            "useAwait": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": [
+        "*.fixture.js",
+        "*.fixture.ts",
+        "*.fixtures.js",
+        "*.fixtures.ts",
+        "*.mock.js",
+        "*.mock.ts",
+        "*.mocks.js",
+        "*.mocks.ts",
+        "**/fixtures/**/*",
+        "**/mocks/**/*",
+        "**/__mocks__/**/*",
+        "**/test-utils/**/*",
+        "**/test-helpers/**/*"
+      ],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noExportsInTest": "off"
+          },
+          "style": {
+            "noDefaultExport": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": [
+        "setupTests.js",
+        "setupTests.ts",
+        "setup-tests.js",
+        "setup-tests.ts",
+        "test-setup.js",
+        "test-setup.ts",
+        "jest.setup.js",
+        "jest.setup.ts",
+        "vitest.setup.js",
+        "vitest.setup.ts",
+        "*.config.js",
+        "*.config.ts",
+        "*.config.mjs",
+        "*.config.cjs"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDefaultExport": "off"
+          },
+          "suspicious": {
+            "noExportsInTest": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": [
+        "*.stories.js",
+        "*.stories.jsx",
+        "*.stories.ts",
+        "*.stories.tsx",
+        "*.story.js",
+        "*.story.jsx",
+        "*.story.ts",
+        "*.story.tsx"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDefaultExport": "off"
+          },
+          "correctness": {
+            "useHookAtTopLevel": "off"
+          }
+        }
+      }
+    }
+  ]
+}

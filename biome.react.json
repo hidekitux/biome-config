@@ -1,0 +1,328 @@
+{
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"javascript": {
+		"formatter": {
+			"jsxQuoteStyle": "double",
+			"bracketSameLine": false,
+			"bracketSpacing": true
+		},
+		"jsxRuntime": "reactClassic",
+		"globals": ["React", "JSX"]
+	},
+	"css": {
+		"formatter": {
+			"enabled": true,
+			"indentStyle": "space",
+			"indentWidth": 2,
+			"lineEnding": "lf",
+			"lineWidth": 80,
+			"quoteStyle": "double"
+		},
+		"parser": {
+			"allowWrongLineComments": false,
+			"cssModules": true
+		},
+		"linter": {
+			"enabled": true
+		}
+	},
+	"linter": {
+		"rules": {
+			"correctness": {
+				"noChildrenProp": "error",
+				"noRenderReturnValue": "error",
+				"noVoidElementsWithChildren": "error",
+				"noInvalidDirectionInLinearGradient": "error",
+				"noInvalidGridAreas": "error",
+				"noInvalidPositionAtImportRule": "error",
+				"noUnknownFunction": "error",
+				"noUnknownMediaFeatureName": "error",
+				"noUnknownProperty": "error",
+				"noUnknownPseudoClass": "error",
+				"noUnknownPseudoElement": "error",
+				"noUnknownTypeSelector": "error",
+				"noUnknownUnit": "error",
+				"noUnmatchableAnbSelector": "error",
+				"useExhaustiveDependencies": {
+					"level": "error",
+					"options": {
+						"hooks": [
+							{
+								"name": "useEffect"
+							},
+							{
+								"name": "useLayoutEffect"
+							},
+							{
+								"name": "useCallback"
+							},
+							{
+								"name": "useMemo"
+							},
+							{
+								"name": "useImperativeHandle"
+							},
+							{
+								"name": "useState",
+								"closureIndex": 0,
+								"dependenciesIndex": 1
+							},
+							{
+								"name": "useReducer",
+								"closureIndex": 0,
+								"dependenciesIndex": 1
+							},
+							{
+								"name": "useRef",
+								"closureIndex": 0,
+								"dependenciesIndex": 1
+							},
+							{
+								"name": "useDebugValue",
+								"closureIndex": 0,
+								"dependenciesIndex": 1
+							},
+							{
+								"name": "useDeferredValue",
+								"closureIndex": 0,
+								"dependenciesIndex": 1
+							},
+							{
+								"name": "useTransition",
+								"closureIndex": 0,
+								"dependenciesIndex": 1
+							}
+						]
+					}
+				},
+				"useHookAtTopLevel": "error",
+				"useJsxKeyInIterable": "error"
+			},
+			"complexity": {
+				"noUselessFragments": "error",
+				"noImportantStyles": "warn"
+			},
+			"security": {
+				"noDangerouslySetInnerHtml": "warn",
+				"noDangerouslySetInnerHtmlWithChildren": "error"
+			},
+			"style": {
+				"useFragmentSyntax": "error",
+				"useSelfClosingElements": "error"
+			},
+			"suspicious": {
+				"noArrayIndexKey": "error",
+				"noDuplicateJsxProps": "error",
+				"noSuspiciousSemicolonInJsx": "error",
+				"noDuplicateAtImportRules": "error",
+				"noDuplicateCustomProperties": "error",
+				"noDuplicateFontNames": "error",
+				"noDuplicateProperties": "error",
+				"noDuplicateSelectorsKeyframeBlock": "error",
+				"noImportantInKeyframe": "error",
+				"noShorthandPropertyOverrides": "warn",
+				"noUnknownAtRules": "error"
+			},
+			"a11y": {
+				"noAccessKey": "warn",
+				"noAriaHiddenOnFocusable": "error",
+				"noAriaUnsupportedElements": "error",
+				"noAutofocus": "warn",
+				"noDistractingElements": "error",
+				"noHeaderScope": "off",
+				"noInteractiveElementToNoninteractiveRole": "error",
+				"noLabelWithoutControl": "error",
+				"noNoninteractiveElementToInteractiveRole": "error",
+				"noNoninteractiveTabindex": "error",
+				"noPositiveTabindex": "warn",
+				"noRedundantAlt": "error",
+				"noRedundantRoles": "error",
+				"noSvgWithoutTitle": "warn",
+				"useAltText": "error",
+				"useAnchorContent": "error",
+				"useAriaActivedescendantWithTabindex": "error",
+				"useAriaPropsForRole": "error",
+				"useAriaPropsSupportedByRole": "error",
+				"useButtonType": "error",
+				"useFocusableInteractive": "error",
+				"useGenericFontNames": "warn",
+				"useHeadingContent": "error",
+				"useHtmlLang": "error",
+				"useIframeTitle": "error",
+				"useKeyWithClickEvents": "error",
+				"useKeyWithMouseEvents": "error",
+				"useMediaCaption": "warn",
+				"useSemanticElements": "error",
+				"useValidAnchor": "error",
+				"useValidAriaProps": "error",
+				"useValidAriaRole": "error",
+				"useValidAriaValues": "error",
+				"useValidLang": "error"
+			},
+			"nursery": {
+				"noNextAsyncClientComponent": "error",
+				"useGoogleFontDisplay": "warn",
+				"useSortedClasses": "warn"
+			}
+		}
+	},
+	"overrides": [
+		{
+			"includes": ["*.jsx", "*.tsx"],
+			"linter": {
+				"rules": {
+					"correctness": {
+						"noNestedComponentDefinitions": "error",
+						"noReactPropAssignments": "error",
+						"noSolidDestructuredProps": "off"
+					},
+					"style": {
+						"useFilenamingConvention": {
+							"level": "warn",
+							"options": {
+								"requireAscii": true,
+								"filenameCases": ["PascalCase", "camelCase"]
+							}
+						}
+					},
+					"suspicious": {
+						"noDocumentImportInPage": "error",
+						"noHeadImportInDocument": "error"
+					}
+				}
+			}
+		},
+		{
+			"includes": ["*.css", "*.scss", "*.sass", "*.less"],
+			"linter": {
+				"rules": {
+					"correctness": {
+						"noMissingVarFunction": "error",
+						"noUnknownFunction": "error",
+						"noUnknownMediaFeatureName": "error",
+						"noUnknownProperty": "error",
+						"noUnknownPseudoClass": "error",
+						"noUnknownPseudoElement": "error",
+						"noUnknownTypeSelector": "error",
+						"noUnknownUnit": "error"
+					},
+					"suspicious": {
+						"noDuplicateAtImportRules": "error",
+						"noDuplicateCustomProperties": "error",
+						"noDuplicateFontNames": "error",
+						"noDuplicateProperties": "error",
+						"noDuplicateSelectorsKeyframeBlock": "error",
+						"noImportantInKeyframe": "error",
+						"noShorthandPropertyOverrides": "warn",
+						"noUnknownAtRules": "error"
+					}
+				}
+			}
+		},
+		{
+			"includes": [
+				"*.module.css",
+				"*.module.scss",
+				"*.module.sass",
+				"*.module.less"
+			],
+			"css": {
+				"parser": {
+					"cssModules": true
+				}
+			}
+		},
+		{
+			"includes": [
+				"**/hooks/*.js",
+				"**/hooks/*.jsx",
+				"**/hooks/*.ts",
+				"**/hooks/*.tsx",
+				"use*.js",
+				"use*.jsx",
+				"use*.ts",
+				"use*.tsx"
+			],
+			"linter": {
+				"rules": {
+					"style": {
+						"useFilenamingConvention": {
+							"level": "error",
+							"options": {
+								"requireAscii": true,
+								"filenameCases": ["camelCase"]
+							}
+						}
+					}
+				}
+			}
+		},
+		{
+			"includes": [
+				"*.test.jsx", 
+				"*.test.tsx", 
+				"*.spec.jsx", 
+				"*.spec.tsx"
+			],
+			"linter": {
+				"rules": {
+					"correctness": {
+						"useHookAtTopLevel": "off"
+					},
+					"suspicious": {
+						"noExportsInTest": "error",
+						"noFocusedTests": "error",
+						"noSkippedTests": "warn"
+					}
+				}
+			}
+		},
+		{
+			"includes": ["*.stories.jsx", "*.stories.tsx"],
+			"linter": {
+				"rules": {
+					"style": {
+						"noDefaultExport": "off"
+					},
+					"correctness": {
+						"useHookAtTopLevel": "off"
+					}
+				}
+			}
+		},
+		{
+			"includes": [
+				"pages/**/*.jsx",
+				"pages/**/*.tsx",
+				"app/**/*.jsx",
+				"app/**/*.tsx"
+			],
+			"linter": {
+				"rules": {
+					"style": {
+						"noDefaultExport": "off"
+					},
+					"suspicious": {
+						"noDocumentImportInPage": "error",
+						"noHeadImportInDocument": "error"
+					}
+				}
+			}
+		},
+		{
+			"includes": [
+				"**/*.styled.js",
+				"**/*.styled.jsx",
+				"**/*.styled.ts",
+				"**/*.styled.tsx"
+			],
+			"linter": {
+				"rules": {
+					"complexity": {
+						"noImportantStyles": "off"
+					}
+				}
+			}
+		}
+	]
+}

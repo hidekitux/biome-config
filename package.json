@@ -1,0 +1,43 @@
+{
+  "name": "@hidekitux/biome-config",
+  "version": "1.0.0",
+  "description": "Biome configuration ported from neostandard and popular ESLint plugins",
+  "type": "module",
+  "private": false,
+  "files": [
+    "biome.standard.json",
+    "biome.react.json",
+    "biome.test.json",
+    "README.md"
+  ],
+  "exports": {
+    "./standard": "./biome.standard.json",
+    "./react": "./biome.react.json",
+    "./test": "./biome.test.json"
+  },
+  "keywords": [
+    "biome",
+    "linter",
+    "formatter",
+    "config",
+    "neostandard",
+    "react",
+    "typescript",
+    "eslint"
+  ],
+  "author": "hidekitux",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hidekitux/biome-config"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2"
+  },
+  "peerDependencies": {
+    "@biomejs/biome": "^2.0.0"
+  },
+  "publishConfig": {
+    "@hidekitux:registry": "https://npm.pkg.github.com"
+  }
+}
