@@ -29,6 +29,9 @@
     "type": "git",
     "url": "git+https://github.com/hidekitux/biome-config.git"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "devDependencies": {
     "@biomejs/biome": "2.2.2",
     "@commitlint/cli": "19.8.1",
