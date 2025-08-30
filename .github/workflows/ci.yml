@@ -40,7 +40,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        config: [standard, react, test, web]
+        include:
+          - name: standard
+            extends: '["${{ github.workspace }}/config/biome.standard.json"]'
+          - name: react
+            extends: '["${{ github.workspace }}/config/biome.standard.json", "${{ github.workspace }}/config/biome.react.json"]'
+          - name: test
+            extends: '["${{ github.workspace }}/config/biome.standard.json", "${{ github.workspace }}/config/biome.test.json"]'
+          - name: web
+            extends: '["${{ github.workspace }}/config/biome.standard.json", "${{ github.workspace }}/config/biome.web.json"]'
     
     steps:
       - name: Checkout
@@ -57,27 +65,26 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
         
-      - name: Validate ${{ matrix.config }} config
+      - name: Validate ${{ matrix.name }} config
         run: |
+          # Create a test directory
           mkdir -p /tmp/biome-test
           cd /tmp/biome-test
+          
+          # Create biome.json that extends the config(s)
           cat > biome.json << EOF
           {
-            "extends": ["${{ github.workspace }}/config/biome.${{ matrix.config }}.json"],
+            "extends": ${{ matrix.extends }},
             "vcs": {
               "enabled": false
             }
           }
           EOF
-          # Create a properly formatted test file according to the config
-          cat > test.js << 'EOF'
-          const test = 'validation test'
-          const obj = {
-            name: 'test',
-            value: 42
-          }
-          console.log(test, obj)
-          EOF
-          # Run check - should pass if config is valid
+          
+          # Copy the appropriate test file
+          cp ${{ github.workspace }}/test-fixtures/test.${{ matrix.name }}.js test.js
+          
+          # Run check - should pass if test file matches the config format
           bun x @biomejs/biome check test.js
-          echo "✅ Config ${{ matrix.config }} validated successfully"
+          
+          echo "✅ Config combination for '${{ matrix.name }}' validated successfully"
