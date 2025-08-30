@@ -6,6 +6,12 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixes
 
+- Add node to mise.toml and improve release workflow ([af147b6](https://github.com/hidekitux/biome-config/commit/af147b6d8a8f42d3eea9b1a0e7087570356d0de3))
+
+## [1.1.2] - 2025-08-30
+
+### Bug Fixes
+
 - Add packages write permission for GitHub Packages publishing ([ab9dfe4](https://github.com/hidekitux/biome-config/commit/ab9dfe4da90e77aa18634f1281abfdf3def29994))
 - Resolve Biome nested configuration error in CI ([be2568b](https://github.com/hidekitux/biome-config/commit/be2568b575e77177c743293a6585512cff336270))
 - Properly configure mise to install and use bun from mise.toml ([e3bd984](https://github.com/hidekitux/biome-config/commit/e3bd984e1aa1a5903bc72a87fcf4a1eb3002028b))
