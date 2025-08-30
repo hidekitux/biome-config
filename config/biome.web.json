@@ -1,0 +1,155 @@
+{
+  "$schema": "../node_modules/@biomejs/biome/configuration_schema.json",
+  "javascript": {
+    "formatter": {
+      "bracketSpacing": true
+    }
+  },
+  "css": {
+    "formatter": {
+      "enabled": true,
+      "indentStyle": "space",
+      "indentWidth": 2,
+      "lineEnding": "lf",
+      "lineWidth": 80,
+      "quoteStyle": "double"
+    },
+    "parser": {
+      "allowWrongLineComments": false,
+      "cssModules": true
+    },
+    "linter": {
+      "enabled": true
+    }
+  },
+  "linter": {
+    "rules": {
+      "correctness": {
+        "noInvalidDirectionInLinearGradient": "error",
+        "noInvalidGridAreas": "error",
+        "noInvalidPositionAtImportRule": "error",
+        "noUnknownFunction": "error",
+        "noUnknownMediaFeatureName": "error",
+        "noUnknownProperty": "error",
+        "noUnknownPseudoClass": "error",
+        "noUnknownPseudoElement": "error",
+        "noUnknownTypeSelector": "error",
+        "noUnknownUnit": "error",
+        "noUnmatchableAnbSelector": "error"
+      },
+      "complexity": {
+        "noImportantStyles": "warn"
+      },
+      "style": {
+        "useSelfClosingElements": "error"
+      },
+      "suspicious": {
+        "noDuplicateAtImportRules": "error",
+        "noDuplicateCustomProperties": "error",
+        "noDuplicateFontNames": "error",
+        "noDuplicateProperties": "error",
+        "noDuplicateSelectorsKeyframeBlock": "error",
+        "noImportantInKeyframe": "error",
+        "noShorthandPropertyOverrides": "warn",
+        "noUnknownAtRules": "error",
+        "useGoogleFontDisplay": "warn"
+      },
+      "a11y": {
+        "noAccessKey": "warn",
+        "noAriaHiddenOnFocusable": "error",
+        "noAriaUnsupportedElements": "error",
+        "noAutofocus": "warn",
+        "noDistractingElements": "error",
+        "noHeaderScope": "off",
+        "noInteractiveElementToNoninteractiveRole": "error",
+        "noLabelWithoutControl": "error",
+        "noNoninteractiveElementToInteractiveRole": "error",
+        "noNoninteractiveTabindex": "error",
+        "noPositiveTabindex": "warn",
+        "noRedundantAlt": "error",
+        "noRedundantRoles": "error",
+        "noSvgWithoutTitle": "warn",
+        "useAltText": "error",
+        "useAnchorContent": "error",
+        "useAriaActivedescendantWithTabindex": "error",
+        "useAriaPropsForRole": "error",
+        "useAriaPropsSupportedByRole": "error",
+        "useButtonType": "error",
+        "useFocusableInteractive": "error",
+        "useGenericFontNames": "warn",
+        "useHeadingContent": "error",
+        "useHtmlLang": "error",
+        "useIframeTitle": "error",
+        "useKeyWithClickEvents": "error",
+        "useKeyWithMouseEvents": "error",
+        "useMediaCaption": "warn",
+        "useSemanticElements": "error",
+        "useValidAnchor": "error",
+        "useValidAriaProps": "error",
+        "useValidAriaRole": "error",
+        "useValidAriaValues": "error",
+        "useValidLang": "error"
+      },
+      "nursery": {
+        "useSortedClasses": "warn"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["*.css", "*.scss", "*.sass", "*.less"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noMissingVarFunction": "error",
+            "noUnknownFunction": "error",
+            "noUnknownMediaFeatureName": "error",
+            "noUnknownProperty": "error",
+            "noUnknownPseudoClass": "error",
+            "noUnknownPseudoElement": "error",
+            "noUnknownTypeSelector": "error",
+            "noUnknownUnit": "error"
+          },
+          "suspicious": {
+            "noDuplicateAtImportRules": "error",
+            "noDuplicateCustomProperties": "error",
+            "noDuplicateFontNames": "error",
+            "noDuplicateProperties": "error",
+            "noDuplicateSelectorsKeyframeBlock": "error",
+            "noImportantInKeyframe": "error",
+            "noShorthandPropertyOverrides": "warn",
+            "noUnknownAtRules": "error"
+          }
+        }
+      }
+    },
+    {
+      "includes": [
+        "*.module.css",
+        "*.module.scss",
+        "*.module.sass",
+        "*.module.less"
+      ],
+      "css": {
+        "parser": {
+          "cssModules": true
+        }
+      }
+    },
+    {
+      "includes": [
+        "**/*.styled.js",
+        "**/*.styled.jsx",
+        "**/*.styled.ts",
+        "**/*.styled.tsx"
+      ],
+      "linter": {
+        "rules": {
+          "complexity": {
+            "noImportantStyles": "off"
+          }
+        }
+      }
+    }
+  ]
+}

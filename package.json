@@ -1,19 +1,17 @@
 {
   "name": "@hidekitux/biome-config",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Biome configuration ported from neostandard and popular ESLint plugins",
   "type": "module",
   "private": false,
   "files": [
-    "biome.standard.json",
-    "biome.react.json",
-    "biome.test.json",
+    "config/",
     "README.md"
   ],
   "exports": {
-    "./standard": "./biome.standard.json",
-    "./react": "./biome.react.json",
-    "./test": "./biome.test.json"
+    "./standard": "./config/biome.standard.json",
+    "./react": "./config/biome.react.json",
+    "./test": "./config/biome.test.json"
   },
   "keywords": [
     "biome",
@@ -32,7 +30,16 @@
     "url": "git+https://github.com/hidekitux/biome-config.git"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2"
+    "@biomejs/biome": "^2",
+    "git-cliff": "^2.10.0",
+    "lefthook": "^1.12.3"
+  },
+  "scripts": {
+    "changelog": "git-cliff --output CHANGELOG.md",
+    "changelog:unreleased": "git-cliff --unreleased --output CHANGELOG.md",
+    "version": "npm run changelog && git add CHANGELOG.md",
+    "prepare": "lefthook install",
+    "lefthook": "lefthook run"
   },
   "peerDependencies": {
     "@biomejs/biome": "^2.0.0"

@@ -1,0 +1,192 @@
+{
+  "$schema": "../node_modules/@biomejs/biome/configuration_schema.json",
+  "extends": ["./biome.web.json"],
+  "javascript": {
+    "formatter": {
+      "jsxQuoteStyle": "double",
+      "bracketSameLine": false
+    },
+    "jsxRuntime": "reactClassic",
+    "globals": ["React", "JSX"]
+  },
+  "linter": {
+    "rules": {
+      "correctness": {
+        "noChildrenProp": "error",
+        "noRenderReturnValue": "error",
+        "noVoidElementsWithChildren": "error",
+        "useExhaustiveDependencies": {
+          "level": "error",
+          "options": {
+            "hooks": [
+              {
+                "name": "useEffect"
+              },
+              {
+                "name": "useLayoutEffect"
+              },
+              {
+                "name": "useCallback"
+              },
+              {
+                "name": "useMemo"
+              },
+              {
+                "name": "useImperativeHandle"
+              },
+              {
+                "name": "useState",
+                "closureIndex": 0,
+                "dependenciesIndex": 1
+              },
+              {
+                "name": "useReducer",
+                "closureIndex": 0,
+                "dependenciesIndex": 1
+              },
+              {
+                "name": "useRef",
+                "closureIndex": 0,
+                "dependenciesIndex": 1
+              },
+              {
+                "name": "useDebugValue",
+                "closureIndex": 0,
+                "dependenciesIndex": 1
+              },
+              {
+                "name": "useDeferredValue",
+                "closureIndex": 0,
+                "dependenciesIndex": 1
+              },
+              {
+                "name": "useTransition",
+                "closureIndex": 0,
+                "dependenciesIndex": 1
+              }
+            ]
+          }
+        },
+        "useHookAtTopLevel": "error",
+        "useJsxKeyInIterable": "error"
+      },
+      "complexity": {
+        "noUselessFragments": "error"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "warn",
+        "noDangerouslySetInnerHtmlWithChildren": "error"
+      },
+      "style": {
+        "useFragmentSyntax": "error"
+      },
+      "suspicious": {
+        "noArrayIndexKey": "error",
+        "noDuplicateJsxProps": "error",
+        "noSuspiciousSemicolonInJsx": "error"
+      },
+      "nursery": {
+        "noNextAsyncClientComponent": "error"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["*.jsx", "*.tsx"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noNestedComponentDefinitions": "error",
+            "noReactPropAssignments": "error",
+            "noSolidDestructuredProps": "off"
+          },
+          "style": {
+            "useFilenamingConvention": {
+              "level": "warn",
+              "options": {
+                "requireAscii": true,
+                "filenameCases": ["PascalCase", "camelCase"]
+              }
+            }
+          },
+          "suspicious": {
+            "noDocumentImportInPage": "error",
+            "noHeadImportInDocument": "error"
+          }
+        }
+      }
+    },
+    {
+      "includes": [
+        "**/hooks/*.js",
+        "**/hooks/*.jsx",
+        "**/hooks/*.ts",
+        "**/hooks/*.tsx",
+        "use*.js",
+        "use*.jsx",
+        "use*.ts",
+        "use*.tsx"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "useFilenamingConvention": {
+              "level": "error",
+              "options": {
+                "requireAscii": true,
+                "filenameCases": ["camelCase"]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "includes": ["*.test.jsx", "*.test.tsx", "*.spec.jsx", "*.spec.tsx"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "useHookAtTopLevel": "off"
+          },
+          "suspicious": {
+            "noExportsInTest": "error",
+            "noFocusedTests": "error",
+            "noSkippedTests": "warn"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["*.stories.jsx", "*.stories.tsx"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDefaultExport": "off"
+          },
+          "correctness": {
+            "useHookAtTopLevel": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": [
+        "pages/**/*.jsx",
+        "pages/**/*.tsx",
+        "app/**/*.jsx",
+        "app/**/*.tsx"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDefaultExport": "off"
+          },
+          "suspicious": {
+            "noDocumentImportInPage": "error",
+            "noHeadImportInDocument": "error"
+          }
+        }
+      }
+    }
+  ]
+}

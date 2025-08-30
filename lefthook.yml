@@ -1,0 +1,44 @@
+# lefthook configuration file
+# https://github.com/evilmartians/lefthook
+
+# HOOKS
+pre-commit:
+  parallel: true
+  commands:
+    biome-check:
+      run: bunx @biomejs/biome check --files-ignore-unknown=true --no-errors-on-unmatched --staged
+      glob: "*.{js,jsx,ts,tsx,json,jsonc}"
+
+commit-msg:
+  commands:
+    validate-commit:
+      run: |
+        # Get the commit message
+        commit_regex='^(feat|fix|docs?|style|refactor|perf|test|chore|revert|build|ci)(\(.+\))?: .+'
+        commit_msg=$(cat {1})
+        
+        # Check if commit message follows conventional commits format
+        if ! echo "$commit_msg" | grep -qE "$commit_regex"; then
+          echo "❌ Commit message does not follow Conventional Commits format!"
+          echo ""
+          echo "Valid format: <type>(<scope>): <subject>"
+          echo ""
+          echo "Types: feat, fix, docs, style, refactor, perf, test, chore, revert, build, ci"
+          echo ""
+          echo "Example: feat: add new feature"
+          echo "Example: fix(auth): resolve login issue"
+          exit 1
+        fi
+
+pre-push:
+  commands:
+    biome-check:
+      run: bunx @biomejs/biome check --error-on-warnings ./config
+
+# EXAMPLES
+#
+# post-merge:
+#   commands:
+#     bun-install:
+#       run: bun install
+#       files: package-lock.json
