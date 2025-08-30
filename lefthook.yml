@@ -6,7 +6,7 @@ pre-commit:
   parallel: true
   commands:
     biome-check:
-      run: bunx @biomejs/biome check --files-ignore-unknown=true --no-errors-on-unmatched --staged
+      run: bun run check --files-ignore-unknown=true --no-errors-on-unmatched --staged
       glob: "*.{js,jsx,ts,tsx,json,jsonc}"
 
 commit-msg:
@@ -33,12 +33,14 @@ commit-msg:
 pre-push:
   commands:
     biome-check:
-      run: bunx @biomejs/biome check --error-on-warnings ./config
+      run: bun run check -- --error-on-warnings ./config
 
-# EXAMPLES
-#
-# post-merge:
-#   commands:
-#     bun-install:
-#       run: bun install
-#       files: package-lock.json
+# Automatically fix versions to exact after merging
+post-merge:
+  commands:
+    bun-install:
+      run: bun install
+      files: package.json
+    syncpack-fix:
+      run: bun run syncpack
+      files: package.json

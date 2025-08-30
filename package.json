@@ -30,18 +30,28 @@
     "url": "git+https://github.com/hidekitux/biome-config.git"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2",
-    "git-cliff": "^2.10.0",
-    "lefthook": "^1.12.3"
+    "@biomejs/biome": "2.2.2",
+    "git-cliff": "2.10.0",
+    "lefthook": "1.12.3",
+    "syncpack": "13.0.4"
   },
   "scripts": {
     "changelog": "git-cliff --output CHANGELOG.md",
     "changelog:unreleased": "git-cliff --unreleased --output CHANGELOG.md",
     "version": "npm run changelog && git add CHANGELOG.md",
     "prepare": "lefthook install",
-    "lefthook": "lefthook run"
+    "lefthook": "lefthook run",
+    "update": "bunx npm-check-updates -u && bun run syncpack && bun install",
+    "syncpack": "syncpack fix-mismatches",
+    "syncpack:check": "syncpack list-mismatches",
+    "lint": "biome lint",
+    "lint:fix": "biome lint --write",
+    "format": "biome format",
+    "format:fix": "biome format --write",
+    "check": "biome check",
+    "check:fix": "biome check --write"
   },
   "peerDependencies": {
-    "@biomejs/biome": "^2.0.0"
+    "@biomejs/biome": "2.2.2"
   }
 }

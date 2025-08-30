@@ -1,0 +1,36 @@
+{
+  "$schema": "https://unpkg.com/syncpack@latest/dist/schema.json",
+  "dependencyTypes": ["dev", "prod", "peer"],
+  "semverGroups": [
+    {
+      "label": "Use exact versions for all dependencies",
+      "packages": ["**"],
+      "dependencies": ["**"],
+      "range": ""
+    }
+  ],
+  "sortAz": [
+    "contributors",
+    "dependencies",
+    "devDependencies",
+    "keywords",
+    "peerDependencies",
+    "scripts"
+  ],
+  "sortFirst": [
+    "name",
+    "version",
+    "description",
+    "type",
+    "private",
+    "files",
+    "exports",
+    "keywords",
+    "author",
+    "license",
+    "repository",
+    "devDependencies",
+    "scripts",
+    "peerDependencies"
+  ]
+}
