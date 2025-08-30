@@ -6,14 +6,8 @@ on:
       - 'v*'
 
 jobs:
-  # First run CI checks
-  ci:
-    name: CI Checks
-    uses: ./.github/workflows/ci.yml
-    
   release:
     name: Release
-    needs: ci  # Wait for CI to complete successfully
     runs-on: ubuntu-latest
     permissions:
       contents: write
