@@ -6,6 +6,12 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixes
 
+- Improve GitHub Packages authentication in release workflow ([daa22f6](https://github.com/hidekitux/biome-config/commit/daa22f6d9058446af202e2757aa23ccddd97a329))
+
+## [1.1.4] - 2025-08-30
+
+### Bug Fixes
+
 - Remove CI dependency from release workflow ([a1007ad](https://github.com/hidekitux/biome-config/commit/a1007ad8e9884ff1710baae0d7b1d60325fce364))
 
 ## [1.1.3] - 2025-08-30
