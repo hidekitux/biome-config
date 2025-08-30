@@ -1,6 +1,6 @@
 {
   "name": "@hidekitux/biome-config",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Biome configuration ported from neostandard and popular ESLint plugins",
   "type": "module",
   "private": false,
@@ -29,7 +29,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hidekitux/biome-config"
+    "url": "git+https://github.com/hidekitux/biome-config.git"
   },
   "devDependencies": {
     "@biomejs/biome": "^2"

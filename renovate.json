@@ -30,10 +30,7 @@
   ],
   "prConcurrentLimit": 10,
   "prCreation": "immediate",
-  "schedule": [
-    "before 3am on Monday",
-    "before 3am on Thursday"
-  ],
+  "schedule": ["before 3am on Monday", "before 3am on Thursday"],
   "semanticCommits": "enabled",
   "commitMessagePrefix": "chore(deps):",
   "commitMessageAction": "update",
