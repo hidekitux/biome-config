@@ -36,7 +36,7 @@ jobs:
         run: bun run syncpack:check
         
       - name: Run knip
-        run: bunx knip
+        run: bun x knip
         
   test-configs:
     name: Test Configuration Files
@@ -65,5 +65,8 @@ jobs:
         
       - name: Validate ${{ matrix.config }} config
         run: |
-          echo '{"extends": ["./config/biome.${{ matrix.config }}.json"]}' > test.biome.json
-          bunx @biomejs/biome check --config-path=test.biome.json --diagnostic-level=error ./config/biome.${{ matrix.config }}.json
+          mkdir -p /tmp/biome-test
+          cd /tmp/biome-test
+          echo '{"extends": ["${{ github.workspace }}/config/biome.${{ matrix.config }}.json"]}' > biome.json
+          echo 'const test = "validation test"' > test.js
+          bun x @biomejs/biome check --diagnostic-level=error test.js
