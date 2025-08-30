@@ -4,10 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ## [unreleased]
 
+### Bug Fixes
+
+- Update lefthook configuration and package dependencies ([ca9f9b8](https://github.com/hidekitux/biome-config/commit/ca9f9b84f040e6eacafc03754353a324432fc14c))
+
 ### Features
 
 - Add initial Biome configuration and setup ([221441b](https://github.com/hidekitux/biome-config/commit/221441bb93e04acffb35ca90f7d87424f27f8956))
-- Add initial Biome configuration files and setup ([f97338b](https://github.com/hidekitux/biome-config/commit/f97338bda3c5a0bbfaa87a1cf1641a282708414f))
+- Add initial Biome configuration files and setup ([00a3dc5](https://github.com/hidekitux/biome-config/commit/00a3dc555ac5902f100752b324f5a841ca157e3b))
+- Add CLAUDE.md for project guidance and development commands ([4ac02d9](https://github.com/hidekitux/biome-config/commit/4ac02d91c8d8a0744abed8e3f156b5183ec73848))
+- Add commitlint configuration and integrate with lefthook ([9b32104](https://github.com/hidekitux/biome-config/commit/9b321049bb88aa0c2675a5cd630e5a548ad7f74e))
 
 ### Miscellaneous Tasks
 
