@@ -1,6 +1,6 @@
 {
   "name": "@hidekitux/biome-config",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Biome configuration ported from neostandard and popular ESLint plugins",
   "type": "module",
   "private": false,
