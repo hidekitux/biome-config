@@ -6,6 +6,21 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixes
 
+- Add packages write permission for GitHub Packages publishing ([ab9dfe4](https://github.com/hidekitux/biome-config/commit/ab9dfe4da90e77aa18634f1281abfdf3def29994))
+- Resolve Biome nested configuration error in CI ([be2568b](https://github.com/hidekitux/biome-config/commit/be2568b575e77177c743293a6585512cff336270))
+- Properly configure mise to install and use bun from mise.toml ([e3bd984](https://github.com/hidekitux/biome-config/commit/e3bd984e1aa1a5903bc72a87fcf4a1eb3002028b))
+- Use properly formatted test file for config validation ([c4893d5](https://github.com/hidekitux/biome-config/commit/c4893d568ca00e2c977530e634eea92d6d33d6e6))
+- Properly test config combinations with extends ([4beedbd](https://github.com/hidekitux/biome-config/commit/4beedbd99353269f6efff514bdffde992c7836b4))
+- Resolve workspace path expansion issue in CI ([0442a09](https://github.com/hidekitux/biome-config/commit/0442a09afe60847803d8f9ff4f11bb636537357f))
+
+### Documentation
+
+- Update CLAUDE.md with improved project documentation ([253d51b](https://github.com/hidekitux/biome-config/commit/253d51b8eb13953d8bfd0bf60a664100a8778d31))
+
+## [1.1.1] - 2025-08-30
+
+### Bug Fixes
+
 - Update lefthook configuration and package dependencies ([ca9f9b8](https://github.com/hidekitux/biome-config/commit/ca9f9b84f040e6eacafc03754353a324432fc14c))
 
 ### Features
