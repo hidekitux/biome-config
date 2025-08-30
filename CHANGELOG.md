@@ -6,6 +6,12 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixes
 
+- Remove CI dependency from release workflow ([a1007ad](https://github.com/hidekitux/biome-config/commit/a1007ad8e9884ff1710baae0d7b1d60325fce364))
+
+## [1.1.3] - 2025-08-30
+
+### Bug Fixes
+
 - Add node to mise.toml and improve release workflow ([af147b6](https://github.com/hidekitux/biome-config/commit/af147b6d8a8f42d3eea9b1a0e7087570356d0de3))
 
 ## [1.1.2] - 2025-08-30
