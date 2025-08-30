@@ -25,6 +25,9 @@ This is a Biome configuration package (`@hidekitux/biome-config`) that provides 
 - `bun run changelog` - Generate full changelog using git-cliff
 - `bun run changelog:unreleased` - Generate changelog for unreleased changes
 - `npm run version` - Update version and generate changelog (npm script)
+- `bun run release` - Create patch release (v1.0.0 → v1.0.1) and push with tags
+- `bun run release:minor` - Create minor release (v1.0.0 → v1.1.0) and push with tags
+- `bun run release:major` - Create major release (v1.1.0 → v2.0.0) and push with tags
 
 ### Git Hooks
 - `bun run lefthook` - Run lefthook manually

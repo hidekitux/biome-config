@@ -1,0 +1,14 @@
+{
+  "$schema": "https://unpkg.com/knip@latest/schema.json",
+  "entry": ["config/*.json"],
+  "project": ["config/*.json", "commitlint.config.js"],
+  "ignore": [],
+  "ignoreDependencies": ["@commitlint/cli"],
+  "ignoreBinaries": [],
+  "workspaces": {
+    ".": {
+      "entry": ["config/*.json"],
+      "project": ["config/*.json", "*.json"]
+    }
+  }
+}
