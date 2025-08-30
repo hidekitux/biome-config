@@ -15,12 +15,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
         
-      - name: Setup mise and install bun
+      - name: Setup mise and install tools
         run: |
           curl https://mise.run | sh
           echo "$HOME/.local/bin" >> $GITHUB_PATH
           $HOME/.local/bin/mise trust mise.toml
-          $HOME/.local/bin/mise install
+          # Install with retry to handle "Text file busy" error
+          $HOME/.local/bin/mise install || (sleep 2 && $HOME/.local/bin/mise install)
           echo "$($HOME/.local/bin/mise bin-paths)" >> $GITHUB_PATH
           
       - name: Install dependencies
@@ -54,12 +55,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
         
-      - name: Setup mise and install bun
+      - name: Setup mise and install tools
         run: |
           curl https://mise.run | sh
           echo "$HOME/.local/bin" >> $GITHUB_PATH
           $HOME/.local/bin/mise trust mise.toml
-          $HOME/.local/bin/mise install
+          # Install with retry to handle "Text file busy" error
+          $HOME/.local/bin/mise install || (sleep 2 && $HOME/.local/bin/mise install)
           echo "$($HOME/.local/bin/mise bin-paths)" >> $GITHUB_PATH
           
       - name: Install dependencies
