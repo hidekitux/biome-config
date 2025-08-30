@@ -20,16 +20,13 @@ jobs:
         with:
           fetch-depth: 0
           
-      - name: Setup mise
+      - name: Setup mise and install bun
         run: |
           curl https://mise.run | sh
           echo "$HOME/.local/bin" >> $GITHUB_PATH
-          echo "$HOME/.local/share/mise/shims" >> $GITHUB_PATH
-          
-      - name: Install tools with mise
-        run: |
-          mise install
-          mise reshim
+          $HOME/.local/bin/mise trust mise.toml
+          $HOME/.local/bin/mise install
+          echo "$($HOME/.local/bin/mise bin-paths)" >> $GITHUB_PATH
           
       - name: Install dependencies
         run: bun install --frozen-lockfile
