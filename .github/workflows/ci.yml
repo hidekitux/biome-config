@@ -61,6 +61,23 @@ jobs:
         run: |
           mkdir -p /tmp/biome-test
           cd /tmp/biome-test
-          echo '{"extends": ["${{ github.workspace }}/config/biome.${{ matrix.config }}.json"]}' > biome.json
-          echo 'const test = "validation test"' > test.js
-          bun x @biomejs/biome check --diagnostic-level=error test.js
+          cat > biome.json << EOF
+          {
+            "extends": ["${{ github.workspace }}/config/biome.${{ matrix.config }}.json"],
+            "vcs": {
+              "enabled": false
+            }
+          }
+          EOF
+          # Create a properly formatted test file according to the config
+          cat > test.js << 'EOF'
+          const test = 'validation test'
+          const obj = {
+            name: 'test',
+            value: 42
+          }
+          console.log(test, obj)
+          EOF
+          # Run check - should pass if config is valid
+          bun x @biomejs/biome check test.js
+          echo "✅ Config ${{ matrix.config }} validated successfully"
