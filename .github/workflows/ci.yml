@@ -42,13 +42,13 @@ jobs:
       matrix:
         include:
           - name: standard
-            extends: '["${{ github.workspace }}/config/biome.standard.json"]'
+            configs: 'standard'
           - name: react
-            extends: '["${{ github.workspace }}/config/biome.standard.json", "${{ github.workspace }}/config/biome.react.json"]'
+            configs: 'standard,react'
           - name: test
-            extends: '["${{ github.workspace }}/config/biome.standard.json", "${{ github.workspace }}/config/biome.test.json"]'
+            configs: 'standard,test'
           - name: web
-            extends: '["${{ github.workspace }}/config/biome.standard.json", "${{ github.workspace }}/config/biome.web.json"]'
+            configs: 'standard,web'
     
     steps:
       - name: Checkout
@@ -71,18 +71,33 @@ jobs:
           mkdir -p /tmp/biome-test
           cd /tmp/biome-test
           
+          # Build extends array from configs
+          EXTENDS='['
+          IFS=',' read -ra CONFIGS <<< "${{ matrix.configs }}"
+          for i in "${!CONFIGS[@]}"; do
+            if [ $i -gt 0 ]; then
+              EXTENDS+=', '
+            fi
+            EXTENDS+='"'${{ github.workspace }}'/config/biome.'"${CONFIGS[$i]}"'.json"'
+          done
+          EXTENDS+=']'
+          
           # Create biome.json that extends the config(s)
           cat > biome.json << EOF
           {
-            "extends": ${{ matrix.extends }},
+            "extends": $EXTENDS,
             "vcs": {
               "enabled": false
             }
           }
           EOF
           
+          # Debug: Show the generated config
+          echo "Generated biome.json:"
+          cat biome.json
+          
           # Copy the appropriate test file
-          cp ${{ github.workspace }}/test-fixtures/test.${{ matrix.name }}.js test.js
+          cp ${{ github.workspace }}/test/fixtures/test.${{ matrix.name }}.js test.js
           
           # Run check - should pass if test file matches the config format
           bun x @biomejs/biome check test.js
