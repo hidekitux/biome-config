@@ -4,64 +4,96 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Biome configuration package (`@hidekitux/biome-config`) that provides shareable Biome v2 configurations ported from neostandard and popular ESLint plugins. The package is published to npm and provides three main configuration presets: standard, react, and test.
+A Biome configuration package (`@hidekitux/biome-config`) providing shareable Biome v2 configurations ported from neostandard and popular ESLint plugins. Published to GitHub Packages with four configuration presets.
 
 ## Development Commands
 
-### Linting and Formatting
-- `bun run lint` - Run Biome linter
-- `bun run lint:fix` - Run Biome linter with auto-fix
-- `bun run format` - Check formatting with Biome
-- `bun run format:fix` - Format code with Biome
-- `bun run check` - Run both linting and formatting checks
-- `bun run check:fix` - Fix both linting and formatting issues
+### Quality Checks
+- `bun run check` - Run linting and formatting checks
+- `bun run check:fix` - Auto-fix linting and formatting issues
+- `bun run lint` / `bun run lint:fix` - Biome linter only
+- `bun run format` / `bun run format:fix` - Biome formatter only
 
-### Package Management
-- `bun run update` - Update all dependencies and sync versions
+### Dependency Management
+- `bun run update` - Update all dependencies, sync versions, and reinstall
 - `bun run syncpack` - Fix dependency version mismatches
-- `bun run syncpack:check` - Check for dependency version mismatches
+- `bun run syncpack:check` - Check for version mismatches
+- `bunx knip` - Check for unused dependencies (CI only)
 
-### Release and Versioning
-- `bun run changelog` - Generate full changelog using git-cliff
-- `bun run changelog:unreleased` - Generate changelog for unreleased changes
-- `npm run version` - Update version and generate changelog (npm script)
-- `bun run release` - Create patch release (v1.0.0 → v1.0.1) and push with tags
-- `bun run release:minor` - Create minor release (v1.0.0 → v1.1.0) and push with tags
-- `bun run release:major` - Create major release (v1.1.0 → v2.0.0) and push with tags
+### Release Process
+- `bun run release` - Create patch release (v1.1.1 → v1.1.2)
+- `bun run release:minor` - Create minor release (v1.1.0 → v1.2.0)
+- `bun run release:major` - Create major release (v1.0.0 → v2.0.0)
 
-### Git Hooks
-- `bun run lefthook` - Run lefthook manually
-- Pre-commit: Runs `biome check` on staged files
-- Commit-msg: Validates conventional commit format (feat, fix, docs, style, refactor, perf, test, chore, revert, build, ci)
-- Pre-push: Runs full `biome check` with error-on-warnings for config files
-- Post-merge: Automatically runs `bun install` and `syncpack fix` when package.json changes
+Release workflow:
+1. Updates version in package.json
+2. Generates CHANGELOG.md via git-cliff
+3. Creates git tag (v*)
+4. Pushes to GitHub
+5. GitHub Actions publishes to GitHub Packages
+
+### Testing Locally
+- `act push -j quality` - Test CI quality job with act
+- `act push -j test-configs --matrix name:standard` - Test config validation
 
 ## Architecture
 
-### Configuration Files Structure
+### Configuration Hierarchy
 ```
 config/
-├── biome.standard.json  - Base configuration for JS/TS projects
-├── biome.react.json     - React/JSX/CSS specific rules
-├── biome.test.json      - Test framework configurations
-└── biome.web.json       - Web-specific configurations
+├── biome.standard.json  # Base - neostandard rules (single quotes, no semicolons)
+├── biome.react.json     # Extends standard + React/JSX/CSS rules
+├── biome.test.json      # Extends standard + test framework support
+└── biome.web.json       # Extends standard + web-specific rules
 ```
 
-### Key Dependencies
-- **@biomejs/biome**: The Biome linter/formatter (peer dependency)
-- **git-cliff**: Changelog generation from conventional commits
-- **lefthook**: Git hooks management
-- **syncpack**: Dependency version synchronization
+**Usage Pattern:**
+```json
+{
+  "extends": [
+    "@hidekitux/biome-config/standard",
+    "@hidekitux/biome-config/react"
+  ]
+}
+```
 
-### Configuration Philosophy
-- All dependencies use exact versions (no ranges)
-- Conventional commits are enforced via git hooks
-- Biome is configured with:
-  - 2-space indentation
-  - Single quotes for JS/TS
-  - No trailing commas
-  - Semicolons only when needed (ASI)
-  - LF line endings
+### CI/CD Pipeline
 
-### Publishing
-The package is published to npm as `@hidekitux/biome-config` with exports for each configuration preset. Files included in the package are the `config/` directory and `README.md`.
+**GitHub Actions:**
+- `ci.yml` - On push/PR: Biome checks, dependency validation, config testing
+- `release.yml` - On tag push: Publishes to GitHub Packages
+
+**Git Hooks (via lefthook):**
+- pre-commit: Biome check on staged files
+- commit-msg: Enforces conventional commits via commitlint
+- pre-push: Full Biome check with error-on-warnings
+- post-merge: Auto-runs `bun install` and `syncpack fix`
+
+### Key Configuration Decisions
+
+**Formatting (standard base):**
+- Indentation: 2 spaces
+- Quotes: Single quotes for JS/TS
+- Semicolons: Only when needed (ASI)
+- Trailing commas: None
+- Line endings: LF
+
+**Dependencies:**
+- Exact versions only (enforced by syncpack)
+- Peer dependency: `@biomejs/biome` 2.2.2
+
+**Testing:**
+Test fixtures in `test/fixtures/` validate each config combination works correctly.
+
+### Publishing Details
+
+Published to GitHub Packages as `@hidekitux/biome-config`
+- Registry: `https://npm.pkg.github.com`
+- Access: Public
+- Files: `config/` directory and `README.md`
+
+Exports:
+- `./standard` → `config/biome.standard.json`
+- `./react` → `config/biome.react.json`
+- `./test` → `config/biome.test.json`
+- Note: `biome.web.json` exists but is not exported in package.json
