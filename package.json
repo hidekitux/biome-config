@@ -33,7 +33,7 @@
     "registry": "https://npm.pkg.github.com"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.2.2",
+    "@biomejs/biome": "2.5.12",
     "@commitlint/cli": "19.8.1",
     "@commitlint/config-conventional": "19.8.1",
     "git-cliff": "2.10.0",
@@ -61,6 +61,6 @@
     "release:major": "npm version major && git push && git push --tags"
   },
   "peerDependencies": {
-    "@biomejs/biome": "2.2.2"
+    "@biomejs/biome": "2.5.12"
   }
 }
